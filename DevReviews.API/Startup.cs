@@ -29,13 +29,11 @@ namespace DevReviews.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<DevReviewsDbContext>(
-            //    context => context.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-            //);
+            //Pegando a connetion string por user-secrets
+            services.AddDbContext<DevReviewsDbContext>(context => context.UseSqlServer(
+                Configuration.GetValue<string>("DevReviewsCn")));
 
-            var connectionString = Configuration.GetValue<string>("DevReviewsCn");
-
-            services.AddSingleton<DevReviewsDbContext>();
+            services.AddScoped<DevReviewsDbContext>();
 
             services.AddAutoMapper(typeof(AutomapperConfig));
 

@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DevReviews.API.Models
 {
     public class ProductReviewViewModel
     {
-        public ProductReviewViewModel(int id, string auth, int rating, string comment, DateTime registeredAt)
+        public ProductReviewViewModel(int id, string auth, int rating, string comment, DateTime registeredAt, int produtctId)
         {
             Id = id;
             Auth = auth;
             Rating = rating;
             Comment = comment;
-            RegisteredAt = registeredAt;
+            RegisteredAt = DateTime.Now;
+            ProdutctId = produtctId;
         }
 
         public int Id { get; private set; }
@@ -21,5 +19,6 @@ namespace DevReviews.API.Models
         public int Rating { get; private set; }
         public string Comment { get; private set; }
         public DateTime RegisteredAt { get; private set; }
+        public int ProdutctId { get; private set; }
     }
 }

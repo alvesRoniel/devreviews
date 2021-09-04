@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DevReviews.API.Models
 {
     public class ProductDetailsViewModel
     {
-        public ProductDetailsViewModel(int id, string title, string description, decimal price, DateTime registeredAt, List<ProductReviewViewModel> productReviewViewModels)
-        {
-            Id = id;
-            Title = title;
-            Description = description;
-            Price = price;
-            RegisteredAt = registeredAt;
-            ProductReviewViewModels = productReviewViewModels;
-        }
+        //public ProductDetailsViewModel(int id, string title, string description, decimal price, DateTime registeredAt, List<ProductReviewViewModel> productReviewViewModels)
+        //{
+        //    Id = id;
+        //    Title = title;
+        //    Description = description;
+        //    Price = price;
+        //    RegisteredAt = registeredAt;
+        //    ProductReviewViewModels = productReviewViewModels;
+        //}
 
         public int Id { get; private set; }
         public string Title { get; private set; }

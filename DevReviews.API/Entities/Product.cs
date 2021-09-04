@@ -10,8 +10,8 @@ namespace DevReviews.API.Entities
             Title = title;
             Description = description;
             Price = price;
-
             RegisteredAt = DateTime.Now;
+
             ProductReviews = new List<ProductReview>();
         }
 

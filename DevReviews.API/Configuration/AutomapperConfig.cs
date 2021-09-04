@@ -9,6 +9,8 @@ namespace DevReviews.API.Configuration
         public AutomapperConfig()
         {
             CreateMap<ProductReview, ProductReviewViewModel>().ReverseMap();
+            CreateMap<ProductReview, ProductReviewDetailsViewModel>().ReverseMap();
+
             CreateMap<Product, ProductViewModel>().ReverseMap();
             CreateMap<Product, ProductDetailsViewModel>().ReverseMap();
         }
