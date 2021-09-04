@@ -1,4 +1,5 @@
 ﻿using DevReviews.API.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevReviews.API.Persistence
 {
-    public class DevReviewsDbContext
+    public class DevReviewsDbContext : DbContext
     {
         public DevReviewsDbContext()
         {
