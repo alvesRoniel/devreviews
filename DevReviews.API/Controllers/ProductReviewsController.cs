@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using DevReviews.API.Entities;
 using DevReviews.API.Models;
-using DevReviews.API.Persistence;
+using DevReviews.API.Persistence.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevReviews.API.Controllers
@@ -15,13 +11,13 @@ namespace DevReviews.API.Controllers
     [Route("api/products/{productId}/productReviews")]
     public class ProductReviewsController : ControllerBase
     {
-        private readonly DevReviewsDbContext _dbContext;
+        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
-        public ProductReviewsController(DevReviewsDbContext dbContext, IMapper mapper)
+        public ProductReviewsController(IMapper mapper, IProductRepository productRepository)
         {
-            _dbContext = dbContext;
             _mapper = mapper;
+            _productRepository = productRepository;
         }
 
         [HttpGet("{id:int}")]
@@ -30,8 +26,7 @@ namespace DevReviews.API.Controllers
             //inputModel = para entrada
             //viewModel = para saída
 
-            var productReview = await _dbContext.DbProductsReview
-                .SingleOrDefaultAsync(p => p.Id.Equals(id));
+            var productReview = await _productRepository.GetReviewByIdAsync(id);
 
             if (productReview == null) return NotFound();
 
@@ -45,8 +40,7 @@ namespace DevReviews.API.Controllers
         {
             var productReview = new ProductReview(model.Author, model.Racting, model.Comments.Trim(), productId);
 
-            await _dbContext.DbProductsReview.AddAsync(productReview);
-            await _dbContext.SaveChangesAsync();
+            await _productRepository.AddReviewAsync(productReview);
 
             return CreatedAtAction(nameof(GetById), new { id = productReview.Id, productId = productId }, model);
         }

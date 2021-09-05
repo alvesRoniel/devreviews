@@ -1,5 +1,6 @@
 using DevReviews.API.Configuration;
 using DevReviews.API.Persistence;
+using DevReviews.API.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,7 @@ namespace DevReviews.API
                 Configuration.GetValue<string>("DevReviewsCn")));
 
             services.AddScoped<DevReviewsDbContext>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddAutoMapper(typeof(AutomapperConfig));
 
