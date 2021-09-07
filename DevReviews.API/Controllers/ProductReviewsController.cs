@@ -38,7 +38,7 @@ namespace DevReviews.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Adicionar(int productId, AddProductReviewInputModel model)
         {
-            var productReview = new ProductReview(model.Author, model.Racting, model.Comments.Trim(), productId);
+            var productReview = new ProductReview(model.Author, model.Rating, model.Comments.Trim(), productId);
 
             await _productRepository.AddReviewAsync(productReview);
 

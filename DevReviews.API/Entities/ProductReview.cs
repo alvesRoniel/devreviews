@@ -9,8 +9,9 @@ namespace DevReviews.API.Entities
             Author = author;
             Rating = rating;
             Comments = comments;
-            RegisteredAt = DateTime.Now;
             ProductId = productId;
+
+            RegisteredAt = DateTime.Now;
         }
 
         public int Id { get; private set; }

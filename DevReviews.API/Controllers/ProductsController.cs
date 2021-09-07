@@ -2,6 +2,7 @@
 using DevReviews.API.Entities;
 using DevReviews.API.Models;
 using DevReviews.API.Persistence.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -37,12 +38,28 @@ namespace DevReviews.API.Controllers
 
             if (product == null) return NotFound();
 
-            var productDetails =  _mapper.Map<ProductDetailsViewModel>(product);
+            //var productDetails =  _mapper.Map<ProductDetailsViewModel>(product);
 
-            return Ok(productDetails);
+            return Ok(product);
         }
 
+        /// <summary>
+        /// Cadastro de Produtos
+        /// </summary>
+        /// <param name="model">Objeto com os dados de cadastro de Produto</param>
+        /// <returns>Objeto recém criadno</returns>
+        /// <remarks>Requisição
+        /// {
+        ///     "title": "Um chinelo top",
+        ///     "descroption": "Um chinelo de Marca",
+        ///     "price": 100
+        /// }
+        /// </remarks>
+        ///<response code="201">Sucesso</response>
+        ///<response code="400">Dados inválidos</response>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(AddProductInputModel model)
         {
             var product = new Product(model.Title, model.Description, model.Price);
@@ -52,6 +69,12 @@ namespace DevReviews.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, model);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Put(int id, UpdateProductInputModel model)
         {

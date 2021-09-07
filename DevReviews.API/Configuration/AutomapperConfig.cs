@@ -8,11 +8,11 @@ namespace DevReviews.API.Configuration
     {
         public AutomapperConfig()
         {
-            CreateMap<ProductReview, ProductReviewViewModel>().ReverseMap();
-            CreateMap<ProductReview, ProductReviewDetailsViewModel>().ReverseMap();
+            CreateMap<ProductReview, ProductReviewViewModel>();
+            CreateMap<ProductReview, ProductReviewDetailsViewModel>();
 
-            CreateMap<Product, ProductViewModel>().ReverseMap();
-            CreateMap<Product, ProductDetailsViewModel>().ReverseMap();
+            CreateMap<Product, ProductViewModel>();
+            CreateMap<Product, ProductDetailsViewModel>();
         }
     }
 }
