@@ -51,7 +51,7 @@ namespace DevReviews.API.Controllers
         /// <remarks>Requisição
         /// {
         ///     "title": "Um chinelo top",
-        ///     "descroption": "Um chinelo de Marca",
+        ///     "description": "Um chinelo de Marca",
         ///     "price": 100
         /// }
         /// </remarks>
